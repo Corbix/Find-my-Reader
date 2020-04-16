@@ -15,7 +15,9 @@ if ($count == 1)
     {
         foreach($datas as $row) 
         {
+			$idutilizator = $row['id'];
 			$firstname = $row['firstname'];
+			$avatar = $row['avatar'];
 		}
 	}
 }

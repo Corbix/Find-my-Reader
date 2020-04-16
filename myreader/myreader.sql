@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2020 at 09:51 PM
+-- Generation Time: Apr 16, 2020 at 11:11 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -147,8 +147,10 @@ CREATE TABLE `users` (
   `password` varchar(200) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
+  `avatar` varchar(200) NOT NULL DEFAULT 'basic.jpg',
   `data_nasterii` date DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
+  `google_account` varchar(100) DEFAULT NULL,
   `last_latitude` double DEFAULT NULL,
   `last_longitude` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -157,8 +159,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`, `firstname`, `lastname`, `data_nasterii`, `description`, `last_latitude`, `last_longitude`) VALUES
-(1, 'seby_cotoc98@yahoo.com', 'sebaseba', 'Sebastian', 'Cotoc', NULL, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `email`, `password`, `firstname`, `lastname`, `avatar`, `data_nasterii`, `description`, `google_account`, `last_latitude`, `last_longitude`) VALUES
+(1, 'seby_cotoc98@yahoo.com', 'sebaseba', 'Sebastian', 'Cotoc', '1_test.jpg', NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
