@@ -5,7 +5,7 @@
 <style>
 .error {color: #FF0000;}
 </style>
-<link rel='stylesheet', href='/stylesheets/register.css'>
+<link rel='stylesheet', href='../stylesheets/register.css'>
 <link rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap'>
 <link rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet'>
 </head>
@@ -78,9 +78,6 @@ function test_input($data) {
 <div class="form-group">
 <label>Last Name:</label>
 <br>
-<!--
-<input class="form-control" name="lastname" type="text" wtx-context="5CBCDC5D-18BE-43BE-8796-4B898D4F715F" wtx-rule-v3="{{myInfo.LastName}}">
--->
 
 <input class="form-control" type="text" name="username" placeholder="Last Name" value="<?php echo $username;?>">
 <span class="error"><?php echo $usernameErr;?></span>
@@ -92,6 +89,7 @@ function test_input($data) {
 <input class="form-control" type="password" name="password" placeholder="Password" value="<?php echo $password;?>">
 <span class="error"><?php echo $passwordErr;?></span>
 </div>
+<!--
 <div class="form-group">
   <label>Confirm Password:</label>
   <br>
@@ -102,7 +100,9 @@ function test_input($data) {
 
 
 </div>
+
 </div>
+-->
 <br>
 <input class="btn btn-primary" type="submit" name="submit" value="Register">
   <br>

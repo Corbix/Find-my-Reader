@@ -15,7 +15,7 @@ if(!empty($_SESSION))
 <style>
 .error {color: #FF0000;}
 </style>
-<link rel='stylesheet', href='/stylesheets/login.css'>
+<link rel='stylesheet', href='../stylesheets/login.css'>
 <link rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap'>
 <link rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet'>
 </head>
@@ -60,17 +60,11 @@ function test_input($data) {
 <div class="right-side">
 <h3>FIND MY READER</h3>
 <h1>Login</h1>
-<!--
-<form method="POST" action="/login" wtx-context="CF67E3E1-BD51-4DAD-81DB-EA49B1B79C8F">
--->
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
 <div class="form-group">
 <label>Email:</label>
 <br>
-<!--
-<input class="form-control" name="email" type="text" wtx-context="C3DA9422-3363-4AAE-9D29-BDB15F858B10" wtx-rule-v3="{{login.EmailAddress}}">
--->
   <input class="form-control" type="text" name="email" placeholder="Email" value="<?php echo $username;?>">
   <span class="error"><?php echo $usernameErr;?></span>
 
@@ -78,17 +72,11 @@ function test_input($data) {
 <div class="form-group">
 <label>Password:</label>
 <br>
-<!--
-<input class="form-control" name="password" type="password" wtx-context="27FCA426-ABE6-472D-8CFA-9CFBDD379512" wtx-rule-v3="{{login.Password}}">
--->
 <input class="form-control" type="password" name="password" placeholder="Password" value="<?php echo $password;?>">
 <span class="error"><?php echo $passwordErr;?></span>
 
 </div>
 <br>
-<!--
-<input class="btn btn-primary" type="submit" value="Login" wtx-context="D9209AEE-3413-471B-88BD-C94BE0AAA030">
--->
 <input class="btn btn-primary" type="submit" name="submit" value="Login">
 
 <br>
