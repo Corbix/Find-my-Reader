@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2020 at 04:12 PM
+-- Generation Time: Apr 16, 2020 at 09:51 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -69,6 +69,60 @@ CREATE TABLE `genres` (
   `id` int(11) NOT NULL,
   `denumire` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `genres`
+--
+
+INSERT INTO `genres` (`id`, `denumire`) VALUES
+(1, 'Action and adventure'),
+(2, 'Alternate history'),
+(3, 'Anthology'),
+(27, 'Art'),
+(28, 'Autobiography'),
+(29, 'Biography'),
+(30, 'Book review'),
+(4, 'Chick lit'),
+(5, 'Children\'s'),
+(6, 'Comic book'),
+(7, 'Coming-of-age'),
+(31, 'Cookbook'),
+(8, 'Crime'),
+(32, 'Diary'),
+(33, 'Dictionary'),
+(9, 'Drama'),
+(34, 'Encyclopedia'),
+(10, 'Fairytale'),
+(11, 'Fantasy'),
+(12, 'Graphic novel'),
+(35, 'Guide'),
+(36, 'Health'),
+(13, 'Historical fiction'),
+(37, 'History'),
+(14, 'Horror'),
+(38, 'Journal'),
+(39, 'Math'),
+(40, 'Memoir'),
+(15, 'Mystery'),
+(16, 'Paranormal romance'),
+(17, 'Picture book'),
+(18, 'Poetry'),
+(19, 'Political thriller'),
+(41, 'Prayer'),
+(42, 'Religion, spirituality, and new age'),
+(44, 'Review'),
+(20, 'Romance'),
+(21, 'Satire'),
+(45, 'Science'),
+(22, 'Science fiction'),
+(46, 'Self help'),
+(23, 'Short story'),
+(24, 'Suspense'),
+(43, 'Textbook'),
+(25, 'Thriller'),
+(47, 'Travel'),
+(48, 'True crime'),
+(26, 'Young adult');
 
 -- --------------------------------------------------------
 
@@ -145,7 +199,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `users`
