@@ -1,6 +1,9 @@
 DROP TABLE users CASCADE CONSTRAINTS;
 /
 
+DROP TABLE locations CASCADE CONSTRAINTS;
+/
+
 DROP TABLE friends CASCADE CONSTRAINTS;
 /
 
@@ -16,13 +19,43 @@ DROP TABLE genres CASCADE CONSTRAINTS;
 DROP TABLE genres_users CASCADE CONSTRAINTS;
 /
 
+DROP TABLE apreciate_books CASCADE CONSTRAINTS;
+/
+
 CREATE TABLE users (
   id INT NOT NULL PRIMARY KEY,
   username VARCHAR2(50) NOT NULL UNIQUE,
   password VARCHAR2(200) NOT NULL,
+  firstname VARCHAR2(50) NOT NULL,
+  lastname VARCHAR2(50) NOT NULL,
+  age INT NOT NULL,
   description VARCHAR2(500) NOT NULL,
   created_at DATE,
   updated_at DATE
+)
+/
+
+CREATE TABLE locations (
+  l_username VARCHAR2(50) NOT NULL,
+  latitude INT NOT NULL,
+  longitude INT NOT NULL,
+  created_at DATE,
+  updated_at DATE,
+  CONSTRAINT fk_location_users FOREIGN KEY (l_username) REFERENCES users(username),
+  CONSTRAINT no_duplicates_locations UNIQUE (l_username)
+)
+/
+
+CREATE TABLE apreciate_books (
+  a_username VARCHAR2(50) NOT NULL,
+  a_title VARCHAR2(50) NOT NULL,
+  liked INT NOT NULL,
+  dislike INT NOT NULL,
+  created_at DATE,
+  updated_at DATE,
+  CONSTRAINT fk_apreciate_books_users FOREIGN KEY (a_username) REFERENCES users(username),
+  CONSTRAINT fk_apreciate_books_books FOREIGN KEY (a_title) REFERENCES books(title),
+  CONSTRAINT no_apreciate_books UNIQUE (a_username,a_title)
 )
 /
 
