@@ -1,14 +1,16 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Find My Reader</title>
+  <title>Register</title>
 <style>
 .error {color: #FF0000;}
 </style>
-<link rel="stylesheet" href="style.css">
+<link rel='stylesheet', href='/stylesheets/register.css'>
+<link rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap'>
+<link rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet'>
 </head>
-<body style="background-image:url(background.jpeg);//width:99%;height:900px;">
-
+<body>
+  <!--<block content>-->
 <?php
 // define variables and set to empty values
 $usernameErr = $passwordErr = $password0Err = "";
@@ -16,7 +18,7 @@ $username = $password = $password0 = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["username"])) {
-    $usernameErr = "username is required";
+    $usernameErr = "field is required";
   } else {
     //$username = test_input($_POST["username"]);
     // check if username only contains letters and whitespace
@@ -50,17 +52,64 @@ function test_input($data) {
 }*/
 ?>
 
-<form class="box" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-<h1>Register to Find My Reader</h1>
+<body>
+<div class="left-side"></div>
 
-  <span class="error"><?php echo $usernameErr;?></span>
-  <input type="text" name="username" placeholder="Username" value="<?php echo $username;?>">
+<div class="right-side">
+<h3>FIND MY READER</h3>
+<h1>Register</h1>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
-  <span class="error"><?php echo $passwordErr;?></span>
-  <input type="password" name="password" placeholder="Password" value="<?php echo $password;?>">
+<div class="form-group">
+<label>Email:</label>
+<br>
+<input class="form-control" type="text" name="email" placeholder="Email" value="<?php echo $username;?>">
+<span class="error"><?php echo $usernameErr;?></span>
 
-  <span class="error"><?php echo $password0Err;?></span>
-  <input type="password" name="password0" placeholder="Password" value="<?php echo $password0;?>">
+</div>
+<div class="form-group">
+<label>First Name:</label>
+<br>
+
+<input class="form-control" type="text" name="username" placeholder="First Name" value="<?php echo $username;?>">
+<span class="error"><?php echo $usernameErr;?></span>
+
+</div>
+<div class="form-group">
+<label>Last Name:</label>
+<br>
+<!--
+<input class="form-control" name="lastname" type="text" wtx-context="5CBCDC5D-18BE-43BE-8796-4B898D4F715F" wtx-rule-v3="{{myInfo.LastName}}">
+-->
+
+<input class="form-control" type="text" name="username" placeholder="Last Name" value="<?php echo $username;?>">
+<span class="error"><?php echo $usernameErr;?></span>
+
+</div>
+<div class="form-group">
+  <label>Password:</label>
+  <br>
+<input class="form-control" type="password" name="password" placeholder="Password" value="<?php echo $password;?>">
+<span class="error"><?php echo $passwordErr;?></span>
+</div>
+<div class="form-group">
+  <label>Confirm Password:</label>
+  <br>
+<input class="form-control" type="password" name="password0" placeholder="Password" value="<?php echo $password0;?>">
+<span class="error"><?php echo $password0Err;?></span>
+
+<div style="position: relative; width: 0px; margin: 0px; padding: 0px; display: block;">
+
+
+</div>
+</div>
+<br>
+<input class="btn btn-primary" type="submit" name="submit" value="Register">
+  <br>
+  <p>You already have an account?</p>
+  <a href="login.php">Login here!</a>
+</form>
+</div>
 
   <?php
   if($password&&$password0){
@@ -107,10 +156,5 @@ echo "<span class=error>Incorect data.</span>";
   }
 }
   ?>
-<hr>
-  <input type="submit" name="submit" value="Register">
-  <input type="submit" name="" value="Cancel" formaction="login.php">
-</form>
-
 </body>
 </html>
