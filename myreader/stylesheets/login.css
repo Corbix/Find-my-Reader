@@ -15,7 +15,12 @@ body {
     background-image: url('../images/login_background.jpg');
     width: 60%;
     background-size: cover;
+    height: 100vh;
 
+}
+
+.left-side img{
+    width: 100%
 }
 
 .right-side {

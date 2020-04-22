@@ -11,6 +11,7 @@ body {
   width: auto;
 
   background-color: #f3f3f3;
+  overflow: hidden;
 }
 
 .menu {
@@ -18,7 +19,14 @@ body {
   background: rgb(233,231,233);
   background: linear-gradient(120deg, rgba(233,231,233,1), rgba(220,209,209,1) 100%);
   text-align: center;
+  font-family: 'Roboto Slab', serif;
+  font-size: 18px;
+  position: sticky;
+  height: auto;
+  position: -webkit-sticky;
+  top: 0; 
 }
+
 
 .menu h3, .setarimenu h3{
   color: #707070;
@@ -26,56 +34,47 @@ body {
   /* font-size: 10px; */
   margin-top: 30px;
   text-transform: uppercase;
+
 }
 
 hr {
   width: 80%;
   color: #707070;
   text-decoration: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .menu a {
-  margin-top: 20px;
+
   color: #707070;
   text-decoration: none;
+
 }
 
-.setarimenu {
-  padding-top: 30px;
-  width: 170vh;
-  background: rgb(233,231,233);
-  background: linear-gradient(120deg, rgba(233,231,233,1), rgba(220,209,209,1) 100%);
-  text-align: center;
+.menu p {
+   margin-top: 20px;
+   margin-bottom: 40px;
 }
 
-.setarimenu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 60vh;
-}
+  /* .menu #logout {
+    position: absolute;
+    bottom: 30px;
+    align-self: center;
+  }
 
-.setarimenu li a {
-  font-family: 'Raleway', sans-serif;
-  display: block;
-  color: white;
-  margin-top: 10px;
-  padding: 8px 16px;
-  text-decoration: none;
-  background-color: #555;
-  border-radius: 10px;
-}
+  #logouthr {
+    position: absolute;
+    bottom: 50px;
 
-.setarimenu li a:hover {
-  background-color: #f1f1f1;
-  color: black;
-}
+  } */
 
 .avatarprofile {
     border-bottom-left-radius: 10px;
 }
 
 .avatarprofile img {
-    border-radius: 5%;
+    border-radius: 50%;
     margin-top: 2em;
     width: 10em;
+    height: auto;
 }
