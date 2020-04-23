@@ -6,13 +6,13 @@ include("session.php");
 <html>
 
 <head>
-<title>Find my reader</title>
+    <title>Find my reader</title>
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/map.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&amp;display=swap">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&amp;display=swap&quot; rel=&quot;stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
 </head>
 
@@ -40,11 +40,13 @@ include("session.php");
                         };
                         let str = `You are here!`;
                         var newurl = "http://localhost/myreader/map.php?lat=" + pos.lat + "&long=" + pos.lng;
-                        window.onload = window.history.pushState({path:newurl},'',newurl);
+                        window.onload = window.history.pushState({
+                            path: newurl
+                        }, '', newurl);
                         infoWindow.setPosition(pos);
                         infoWindow.setContent(str);
                         infoWindow.open(map);
-                        map.setCenter(pos);    
+                        map.setCenter(pos);
                     }, function () {
                         handleLocationError(true, infoWindow, map.getCenter());
                     });
@@ -52,6 +54,40 @@ include("session.php");
                     // Browser doesn't support Geolocation
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
+
+                downloadUrl('http://localhost/myreader/getMarkers.php', function (data) {
+                    var xml = data.resnponseXML;
+                    var xml = data.responseXML;
+                    var markers = xml.documentElement.getElementsByTagName('marker');
+                    Array.prototype.forEach.call(markers, function (markerElem) {
+                        var id = markerElem.getAttribute('id');
+                        var firstname = markerElem.getAttribute('firstname');
+                        var lastname = markerElem.getAttribute('lastname');
+                        var point = new google.maps.LatLng(
+                            parseFloat(markerElem.getAttribute('lat')),
+                            parseFloat(markerElem.getAttribute('long')));
+
+                        var infowincontent = document.createElement('div');
+                        var strong = document.createElement('strong');
+                        strong.textContent = firstname + " " + lastname;
+                        infowincontent.appendChild(strong);
+                        infowincontent.appendChild(document.createElement('br'));
+
+                        var text = document.createElement('text');
+                        text.textContent = id;
+                        infowincontent.appendChild(text);
+                        var icon = {};
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: point,
+                            label: icon.label
+                        });
+                        marker.addListener('click', function () {
+                            infoWindow.setContent(infowincontent);
+                            infoWindow.open(map, marker);
+                        });
+                    });
+                });
             }
 
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -60,9 +96,31 @@ include("session.php");
                     'Error: The Geolocation service failed.' :
                     'Error: Your browser doesn\'t support geolocation.');
                 infoWindow.open(map);
+
+
             }
-            
-            
+
+            function downloadUrl(url, callback) {
+                var request = window.ActiveXObject ?
+                    new ActiveXObject('Microsoft.XMLHTTP') :
+                    new XMLHttpRequest;
+
+                request.onreadystatechange = function () {
+                    if (request.readyState == 4) {
+                        request.onreadystatechange = doNothing;
+                        callback(request, request.status);
+                    }
+                };
+
+                request.open('GET', url, true);
+                request.send(null);
+            }
+
+            function doNothing() {}
+
+        // TODO: show only markers that are close to the user and have the same read books 
+        // add image avatar and the same books for each marker
+
         </script>
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi3LWaYOYnfZL0FMmeNbVgzMDfOtTFxzM&callback=initMap">
@@ -72,8 +130,6 @@ include("session.php");
 </body>
 
 </html>
-
-<!-- TODO: extract data from database and place markers for users -->
 
 <?php 
 
