@@ -38,14 +38,13 @@ include("session.php");
                             lat: position.coords.latitude,
                             lng: position.coords.longitude
                         };
-                        let str = `
-                                    Latitude: ${pos.lat} \n
-                                    Longitude: ${pos.lng} `;
+                        let str = `You are here!`;
+                        var newurl = "http://localhost/myreader/map.php?lat=" + pos.lat + "&long=" + pos.lng;
+                        window.onload = window.history.pushState({path:newurl},'',newurl);
                         infoWindow.setPosition(pos);
                         infoWindow.setContent(str);
                         infoWindow.open(map);
-                        map.setCenter(pos); 
-                        
+                        map.setCenter(pos);    
                     }, function () {
                         handleLocationError(true, infoWindow, map.getCenter());
                     });
@@ -63,11 +62,12 @@ include("session.php");
                 infoWindow.open(map);
             }
             
-            var bubble = document.getElementsByClassName('gm-style-iw-d');
+            
         </script>
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi3LWaYOYnfZL0FMmeNbVgzMDfOtTFxzM&callback=initMap">
         </script>
+
     </div>
 </body>
 

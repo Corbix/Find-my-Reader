@@ -19,7 +19,7 @@ if ($count > 0)
 }
 $dbh = null;
     if(empty($genre_user)) {
-        $msg = " You don't have any favorite genres added, so we're showing you random genre recommendations. To add some, go to the seetings page!";
+        $msg = " You don't have any favorite genres added, so we're showing you random genre recommendations. To add some, go to the settings page!";
         $genre1 = "Thriller";
         $genre2 = "Romance";
     } else {
