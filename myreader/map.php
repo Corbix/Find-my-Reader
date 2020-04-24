@@ -63,19 +63,43 @@ include("session.php");
                         var id = markerElem.getAttribute('id');
                         var firstname = markerElem.getAttribute('firstname');
                         var lastname = markerElem.getAttribute('lastname');
+                        var avatar = markerElem.getAttribute('avatar');
                         var point = new google.maps.LatLng(
                             parseFloat(markerElem.getAttribute('lat')),
                             parseFloat(markerElem.getAttribute('long')));
 
                         var infowincontent = document.createElement('div');
+                        infowincontent.style.display = 'flex';
+                        infowincontent.style.flexDirection = 'row';
+
+                        var infoLeft = document.createElement('div');
+                        infoLeft.style.display = 'flex';
+                        infoLeft.style.flexDirection = 'column';
+                        infoLeft.style.padding = '15px';
+                        
                         var strong = document.createElement('strong');
                         strong.textContent = firstname + " " + lastname;
-                        infowincontent.appendChild(strong);
-                        infowincontent.appendChild(document.createElement('br'));
+                        infowincontent.appendChild(infoLeft);
+                        infoLeft.appendChild(strong);
+                        // infowincontent.appendChild(document.createElement('br'));
+                        
 
                         var text = document.createElement('text');
                         text.textContent = id;
-                        infowincontent.appendChild(text);
+                        infoLeft.appendChild(text);
+
+                        // var sendNotification = document.createElement('button')
+                        // sendNotification.textContent = 'See profile';
+                        // infoLeft.appendChild(sendNotification);
+
+                        var infoRight = document.createElement('div');
+                        var user_avatar = document.createElement('img');
+                        user_avatar.src = 'images/avatars/' + avatar;
+                        user_avatar.style.height = '100px';
+                        user_avatar.style.borderRadius = '50%';
+                        infowincontent.appendChild(infoRight);
+                        infoRight.appendChild(user_avatar);
+
                         var icon = {};
                         var marker = new google.maps.Marker({
                             map: map,
@@ -119,7 +143,7 @@ include("session.php");
             function doNothing() {}
 
         // TODO: show only markers that are close to the user and have the same read books 
-        // add image avatar and the same books for each marker
+        // add the same read books for each marker
 
         </script>
         <script async defer

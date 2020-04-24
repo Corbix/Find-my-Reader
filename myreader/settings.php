@@ -19,7 +19,7 @@ include("session.php");
 
 		<div class="right-side">
 		<h3>Setari cont</h3><br>
-		<div class="settings-header" onclick="myFunction()"> 
+		<div class="settings-header"> 
 			<h2> Setari cont 
 		</div>
 		<div class="setarimenu" id="setarimenu">

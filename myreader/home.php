@@ -31,9 +31,13 @@ $dbh = null;
     }
     }
 
+    $genre1_link = str_replace(' ', '+', $genre1);
+    $genre2_link = str_replace(' ', '+', $genre2);
 
-$url_genre1 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre1}&callback=handleResponse";
-$url_genre2 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre2}&callback=handleResponse";
+$url_genre1 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre1_link}&callback=handleResponse";
+$url_genre2 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre2_link}&callback=handleResponse";
+
+// TODO: check if the genre name has spaces and replace them with '+'
 
 ?>
 

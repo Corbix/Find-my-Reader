@@ -19,6 +19,7 @@ header("Content-type: text/xml");
                $newnode->setAttribute("lastname", $row['lastname']);
                $newnode->setAttribute("lat", $row['last_latitude']);
                $newnode->setAttribute("long", $row['last_longitude']);
+               $newnode->setAttribute("avatar", $row['avatar']);
 	        }
         }
     }
