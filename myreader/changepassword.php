@@ -38,6 +38,7 @@ include("session.php");
 			echo "<script>location.href = 'changepassword.php'</script>";
 		}
     else{
+	$newpassword = strtoupper(hash('whirlpool', $newpassword));
     include('Includere/connection.php');
     $sql = "UPDATE `users` set password = '$newpassword'  WHERE `email`='$email'";
     $datas = $dbh->query($sql);

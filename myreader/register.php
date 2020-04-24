@@ -63,6 +63,7 @@ if(isset($_SESSION['email']))
 	{	
 		$email = $_POST["email"];
 		$password = $_POST["password"];
+		$password = strtoupper(hash('whirlpool', $password));
 		$firstname = $_POST["firstname"];
 		$lastname = $_POST["lastname"];
 		if(strlen($email) < 5 || strlen($password) < 5 || strlen($firstname) < 2 || strlen($lastname) < 2 || !strpos($email,'@'))

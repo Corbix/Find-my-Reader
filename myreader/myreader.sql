@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2020 at 11:11 PM
+-- Generation Time: Apr 24, 2020 at 07:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -135,6 +135,15 @@ CREATE TABLE `genres_users` (
   `denumire` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `genres_users`
+--
+
+INSERT INTO `genres_users` (`email`, `denumire`) VALUES
+('seby_cotoc98@yahoo.com', 'Children'),
+('seby_cotoc98@yahoo.com', 'Drama'),
+('seby_cotoc98@yahoo.com', 'Autobiography');
+
 -- --------------------------------------------------------
 
 --
@@ -160,7 +169,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `firstname`, `lastname`, `avatar`, `data_nasterii`, `description`, `google_account`, `last_latitude`, `last_longitude`) VALUES
-(1, 'seby_cotoc98@yahoo.com', 'sebaseba', 'Sebastian', 'Cotoc', '1_test.jpg', NULL, NULL, NULL, NULL, NULL);
+(1, 'seby_cotoc98@yahoo.com', '6845104EB4AFC0532BA0BF5F0A665154F1BF742FA01D209FBE215AA8321910141785BFA2D562F2D423601F068536AED82D33B75B718207313D48CA20C4BC43E3', 'Sebastian', 'Cotoc', '1_test.jpg', '1998-04-21', '12321312saasdasdasfsdgsga', NULL, NULL, NULL),
+(3, 'seby_bike@yahoo.com', '312B6DB61A37A2F1B126FA2C7976B613765EC577AE68577FE43771C12E1CA4549E376E04C91735AC446D664636AE5EE3150E9E076E649FAD18D0302BFBCF5669', 'Alin', 'Joshu', 'basic.jpg', NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -207,7 +217,7 @@ ALTER TABLE `genres`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

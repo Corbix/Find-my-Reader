@@ -49,6 +49,7 @@ if(isset($_SESSION['email']))
 	{	
 		$email = $_POST["email"];
 		$password = $_POST["password"];
+		$password = strtoupper(hash('whirlpool', $password));
 		include('Includere/connection.php');
 		$sql = "SELECT * FROM `users` WHERE `email`='$email' AND `password`='$password'";
 		$datas = $dbh->query($sql);
