@@ -19,20 +19,19 @@ include("session.php");
 
 		<div class="right-side">
 		<h3>Setari cont</h3><br>
-		<div class="settings-header">
-			<h2> Setari cont
+		<div class="settings-header"> 
+			<h2> Setari cont 
 		</div>
 		<div class="setarimenu" id="setarimenu">
 			<!-- <center> -->
-
+			
 			<ul>
 				<li><a href="changepassword.php">Schimba parola</a></li>
 				<li><a href="changeavatar.php">Adauga/Modifica/Sterge poza de profil</a></li>
 				<li><a href="changebirthdate.php">Adauga/Modifica data nasterii</a></li>
 				<li><a href="changedescription.php">Adauga/Modifica descriere cont</a></li>
-				<li><a href="#">Adauga/Modifica Google Account</a></li>
-				<li><a href="#">Adauga preferinta genuri</a></li>
-				<li><a href="#">Sterge preferinta genuri</a></li>
+				<li><a href="adaugagen.php">Adauga preferinta genuri</a></li>
+				<li><a href="stergegen.php">Sterge preferinta genuri</a></li>
 				<li><a href="#">Adauga carte citita</a></li>
 				<li><a href="#">Sterge carte citita</a></li>
 			</ul>
