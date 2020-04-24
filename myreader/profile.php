@@ -36,20 +36,19 @@ $dbh = null;
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
 </head>
 	<body>
-		<div class="menu" id='menu'>
-			<h3>Find my reader</h3>
+		<?php include('menu.php'); ?>
+		<div class="right-side">
+		<center>
 			<div class="avatarprofile">
 				<!-- <a href="<?php echo "images/avatars/".$c_avatar; ?>"><img src="<?php echo "images/avatars/".$c_avatar; ?>" alt=""></a> -->
 				<img src="<?php echo "images/avatars/".$c_avatar; ?>" alt="">
 			</div>
+			<h3>Detalii cont</h3>
 			<p>
-				<?php echo $c_firstname;?>
-				<?php echo $c_lastname;?>
-			</p>
-		</div>
-		<div class="right-side">
-			<h3>Detalii cont</h3><br>
-			<p>
+				Firstname: <?php echo $c_firstname;?><br><br>
+				
+				Lastname: <?php echo $c_lastname;?><br><br>
+			
 				Email: <?php echo $c_email;?><br><br>
 				
 				<?php if ($c_birthday){ ?>
@@ -70,42 +69,51 @@ $dbh = null;
 				Descriere: <?php echo $c_description; ?><br><br>
 				<?php } ?>
 				
-				Genuri preferate:
 				<?php
 				include('Includere/connection.php');
 				$sql = "SELECT * FROM `genres_users` WHERE `email` = '$c_email'";
 				$datas = $dbh->query($sql);
 				$count = $datas->rowCount();
-				if($datas !== false) 
+				if ($count >= 1)
 				{
-					foreach($datas as $row) 
+					echo "Genuri preferate:";
+					if($datas !== false) 
 					{
-						$den = $row['denumire'];
-						echo $den;
-						echo ", ";
+						foreach($datas as $row) 
+						{
+							$den = $row['denumire'];
+							echo $den;
+							echo ", ";
+						}
 					}
+					echo "<br><br>";
 				}
 				$dbh = null;
-				?><br><br>
+				?>
 				
-				Carti citite:
+				
 				<?php
 				include('Includere/connection.php');
 				$sql = "SELECT * FROM `books_users` WHERE `email` = '$c_email'";
 				$datas = $dbh->query($sql);
 				$count = $datas->rowCount();
-				if($datas !== false) 
+				if ($count >= 1)
 				{
-					foreach($datas as $row) 
+					echo "Carti citite:";
+					if($datas !== false) 
 					{
-						$isbn = $row['ISBN'];
-						echo $isbn;
-						echo ", ";
+						foreach($datas as $row) 
+						{
+							$isbn = $row['ISBN'];
+							echo $isbn;
+							echo ", ";
+						}
 					}
 				}
 				$dbh = null;
 				?>
 			</p>
+		</center>
 		</div>
 	</body>
 </html>
