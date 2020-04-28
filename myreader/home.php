@@ -97,11 +97,14 @@ $url_genre2 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre2_
             for (var i = 0; i < 6; i++) {
                 var item = response.items[i];
                 // in production code, item.text should have the HTML entities escaped.
+                const ahref = document.createElement('a');
+                ahref.href = item.volumeInfo.infoLink;
                 const card = document.createElement('div');
                 card.setAttribute('class', 'book-cover');
 
                 const cover = document.createElement('img');
                 cover.src = item.volumeInfo.imageLinks.smallThumbnail;
+                cover.href = item.volumeInfo.infoLink;
 
                 const h2 = document.createElement('h2');
                 h2.innerHTML += item.volumeInfo.title;
@@ -109,7 +112,8 @@ $url_genre2 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre2_
                 h4.innerHTML += item.volumeInfo.authors;
 
                 app.appendChild(card);
-                card.append(cover);
+                card.append(ahref);
+                ahref.append(cover);
                 card.appendChild(h2);
                 card.appendChild(h4);
             }
@@ -120,11 +124,14 @@ $url_genre2 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre2_
                 for (var i = 0; i < 6; i++) {
                     var item = response.items[i];
                     // in production code, item.text should have the HTML entities escaped.
+                    const ahref = document.createElement('a');
+                    ahref.href = item.volumeInfo.infoLink;
                     const card = document.createElement('div');
                     card.setAttribute('class', 'book-cover');
 
                     const cover = document.createElement('img');
                     cover.src = item.volumeInfo.imageLinks.smallThumbnail;
+                    cover.href = item.volumeInfo.infoLink;
 
                     const h2 = document.createElement('h2');
                     h2.innerHTML += item.volumeInfo.title;
@@ -132,7 +139,8 @@ $url_genre2 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre2_
                     h4.innerHTML += item.volumeInfo.authors;
 
                     app0.appendChild(card);
-                    card.append(cover);
+                    card.append(ahref);
+                    ahref.append(cover);
                     card.appendChild(h2);
                     card.appendChild(h4);
                 }
@@ -148,6 +156,8 @@ $url_genre2 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre2_
             for (var i = 0; i < 6; i++) {
                 var item = response.items[i];
                 // in production code, item.text should have the HTML entities escaped.
+                const ahref = document.createElement('a');
+                ahref.href = item.volumeInfo.infoLink;
                 const card = document.createElement('div');
                 card.setAttribute('class', 'book-cover');
 
@@ -160,7 +170,8 @@ $url_genre2 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre2_
                 h4.innerHTML += item.volumeInfo.authors;
 
                 app0.appendChild(card);
-                card.append(cover);
+                card.append(ahref);
+                ahref.append(cover);;
                 card.appendChild(h2);
                 card.appendChild(h4);
             }
