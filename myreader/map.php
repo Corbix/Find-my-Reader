@@ -7,6 +7,7 @@ include("session.php");
 
 <head>
     <title>Find my reader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/map.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&amp;display=swap">
@@ -75,6 +76,7 @@ include("session.php");
                         infowincontent.style.flexDirection = 'row';
 
                         var infoLeft = document.createElement('div');
+                        infoLeft.setAttribute('class', 'profile-div');
                         infoLeft.style.display = 'flex';
                         infoLeft.style.flexDirection = 'column';
                         infoLeft.style.padding = '15px';
@@ -84,7 +86,6 @@ include("session.php");
                         strong.textContent = firstname + " " + lastname;
                         infowincontent.appendChild(infoLeft);
                         infoLeft.appendChild(strong);
-                        // infowincontent.appendChild(document.createElement('br'));
                         
                         var br = document.createElement('br');
                         infoLeft.appendChild(br);
@@ -112,6 +113,7 @@ include("session.php");
                         user_avatar.src = 'images/avatars/' + avatar;
                         infowincontent.appendChild(infoRight);
                         infoRight.appendChild(user_avatar);
+
 
                         var icon = {};
                         var marker = new google.maps.Marker({

@@ -10,12 +10,17 @@ if(isset($_SESSION['email']))
 <html>
 	<head>
 	  <title>My reader</title>
+	  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel='stylesheet', href='stylesheets/login.css'>
 		<link rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap'>
 		<link rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet'>
 	</head>
 	<body>
-		<div class="left-side"></div>
+		<div class="left-side">
+		<center>
+		<h3>FIND MY READER</h3>
+		</center>
+		</div>
 
 		<div class="right-side">
 		<h3>FIND MY READER</h3>

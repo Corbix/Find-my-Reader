@@ -13,4 +13,5 @@
 	<hr><a href="map.php">Map</a>
 	<hr><a href="settings.php">Settings</a>
 	<hr id="logouthr"><a href="logout.php" id="logout">Logout</a>
+
 </div>
