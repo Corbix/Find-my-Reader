@@ -101,6 +101,7 @@ include("session.php");
                         button.setAttribute('id', 'view-profile');
                         button.style.position = 'absolute';
                         button.style.bottom = '15px';
+                        button.setAttribute('onclick', `window.location.href='/myreader/profile.php?email=${email}'`)
                         infoLeft.appendChild(button);
 
                         // var sendNotification = document.createElement('button')
@@ -157,8 +158,6 @@ include("session.php");
 
             function doNothing() {}
 
-        // TODO: show only markers that are close to the user and have the same read books 
-        // add the same read books for each marker
 
         </script>
         <script async defer
