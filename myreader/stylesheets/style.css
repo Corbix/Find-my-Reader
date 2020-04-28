@@ -69,12 +69,21 @@ hr {
   } */
 
 .avatarprofile {
-    border-bottom-left-radius: 10px;
+    /* border-bottom-left-radius: 10px; */
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
 }
 
 .avatarprofile img {
-    border-radius: 50%;
-    margin-top: 2em;
+    /* border-radius: 50%; */
+    /* margin-top: 2em;
     width: 10em;
-    height: auto;
+    height: auto; */
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
 }

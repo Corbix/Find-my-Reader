@@ -39,7 +39,7 @@ include("session.php");
                             lng: position.coords.longitude
                         };
                         let str = `You are here!`;
-                        var newurl = "http://localhost/myreader/map.php?lat=" + pos.lat + "&long=" + pos.lng;
+                        var newurl = "/myreader/map.php?lat=" + pos.lat + "&long=" + pos.lng;
                         window.onload = window.history.pushState({
                             path: newurl
                         }, '', newurl);
@@ -55,15 +55,17 @@ include("session.php");
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
 
-                downloadUrl('http://localhost/myreader/getMarkers.php', function (data) {
+                downloadUrl('/myreader/getMarkers.php', function (data) {
                     var xml = data.resnponseXML;
                     var xml = data.responseXML;
                     var markers = xml.documentElement.getElementsByTagName('marker');
                     Array.prototype.forEach.call(markers, function (markerElem) {
-                        var id = markerElem.getAttribute('id');
+                        var email = markerElem.getAttribute('email');
                         var firstname = markerElem.getAttribute('firstname');
                         var lastname = markerElem.getAttribute('lastname');
                         var avatar = markerElem.getAttribute('avatar');
+                        var title = markerElem.getAttribute('books');
+
                         var point = new google.maps.LatLng(
                             parseFloat(markerElem.getAttribute('lat')),
                             parseFloat(markerElem.getAttribute('long')));
@@ -76,6 +78,7 @@ include("session.php");
                         infoLeft.style.display = 'flex';
                         infoLeft.style.flexDirection = 'column';
                         infoLeft.style.padding = '15px';
+                        infoLeft.style.marginRight = '15px';
                         
                         var strong = document.createElement('strong');
                         strong.textContent = firstname + " " + lastname;
@@ -83,20 +86,30 @@ include("session.php");
                         infoLeft.appendChild(strong);
                         // infowincontent.appendChild(document.createElement('br'));
                         
+                        var br = document.createElement('br');
+                        infoLeft.appendChild(br);
 
                         var text = document.createElement('text');
-                        text.textContent = id;
+                        text.textContent = `"` + title + `"`;
+                        text.style.fontWeight = '500';
+                        text.style.color = '#A7CCA7';
                         infoLeft.appendChild(text);
+
+                        var button = document.createElement('button');
+                        button.textContent = 'View profile';
+                        button.setAttribute('id', 'view-profile');
+                        button.style.position = 'absolute';
+                        button.style.bottom = '15px';
+                        infoLeft.appendChild(button);
 
                         // var sendNotification = document.createElement('button')
                         // sendNotification.textContent = 'See profile';
                         // infoLeft.appendChild(sendNotification);
 
                         var infoRight = document.createElement('div');
+                        infoRight.className = 'avatarDiv';
                         var user_avatar = document.createElement('img');
                         user_avatar.src = 'images/avatars/' + avatar;
-                        user_avatar.style.height = '100px';
-                        user_avatar.style.borderRadius = '50%';
                         infowincontent.appendChild(infoRight);
                         infoRight.appendChild(user_avatar);
 
@@ -149,36 +162,37 @@ include("session.php");
         <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi3LWaYOYnfZL0FMmeNbVgzMDfOtTFxzM&callback=initMap">
         </script>
+        <?php 
+
+include('Includere/connection.php');
+if ($_GET['lat'] == NULL || $_GET['long'] == NULL){
+    ;
+} else {
+    $sql = "SELECT `last_latitude`, `last_longitude` FROM `users` WHERE `email`='$email'";
+    $datas = $dbh->query($sql);
+    $count = $datas->rowCount();
+    if ($count == 1) {
+        if($datas !== false) {
+            foreach($datas as $row) {
+                $last_longitude = $row['last_longitude'];
+                $last_latitude = $row['last_latitude'];
+            }
+        }
+    }
+    $lat = $_GET['lat'];
+    $long = $_GET['long'];
+
+    if($last_longitude != $long || $last_latitude != $lat) {
+    $sql = "UPDATE `users` set last_latitude = '$lat', last_longitude = '$long' WHERE `email`='$email'";
+    $datas = $dbh->query($sql);
+    $dbh = null;
+    }
+}
+?>
 
     </div>
+    
 </body>
 
 </html>
 
-<?php 
-
-    include('Includere/connection.php');
-    if ($_GET['lat'] == NULL || $_GET['long'] == NULL){
-        ;
-    } else {
-        $sql = "SELECT `last_latitude`, `last_longitude` FROM `users` WHERE `email`='$email'";
-        $datas = $dbh->query($sql);
-        $count = $datas->rowCount();
-        if ($count == 1) {
-            if($datas !== false) {
-                foreach($datas as $row) {
-		            $last_longitude = $row['last_longitude'];
-			        $last_latitude = $row['last_latitude'];
-		        }
-	        }
-        }
-        $lat = $_GET['lat'];
-        $long = $_GET['long'];
-
-        if($last_longitude != $long || $last_latitude != $lat) {
-        $sql = "UPDATE `users` set last_latitude = '$lat', last_longitude = '$long' WHERE `email`='$email'";
-        $datas = $dbh->query($sql);
-        $dbh = null;
-        }
-    }
-?>

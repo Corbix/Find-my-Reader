@@ -24,18 +24,23 @@ $dbh = null;
         $genre2 = "Romance";
     } else {
     $msg = " ";
+    if(count($genre_user) == 1){
+        $genre1 = $genre_user[mt_rand(0, count($genre_user) - 1)];
+        $genre2 = "Thriller";
+    } else {
     $genre1 = $genre_user[mt_rand(0, count($genre_user) - 1)];
     $genre2 = $genre_user[mt_rand(0, count($genre_user) - 1)];
     while($genre1 == $genre2) {
         $genre1 = $genre_user[mt_rand(0, count($genre_user) - 1)];
     }
     }
+    }
 
     $genre1_link = str_replace(' ', '+', $genre1);
     $genre2_link = str_replace(' ', '+', $genre2);
 
-$url_genre1 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre1_link}&callback=handleResponse";
-$url_genre2 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre2_link}&callback=handleResponse";
+$url_genre1 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre1_link}&orderBy=newest&callback=handleResponse";
+$url_genre2 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre2_link}&orderBy=newest&callback=handleResponse";
 
 // TODO: check if the genre name has spaces and replace them with '+'
 
