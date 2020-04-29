@@ -216,7 +216,7 @@ include("session.php");
                   for (var i = 0; i < data.items.length; i++) {
                     var item = data.items[i];
                     const title = item.volumeInfo.title;
-                    let author = item.volumeInfo.authors;
+                    const author = item.volumeInfo.authors;
                     const isbn = item.volumeInfo.industryIdentifiers[0].identifier;
 
                     const card = document.createElement('div');
@@ -435,8 +435,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 		if (!empty($_POST['book-submit'])) {
 			$isbn = $_POST["isbn"];
-			$title = $_POST["title"];
 			$author = $_POST["author"];
+			$title = str_replace("'", "\'", $_POST["title"]);
 
 			include('Includere/connection.php');
 			$sql = "INSERT IGNORE INTO `books`(`ISBN`, `title`, `author`) VALUES ('$isbn','$title','$author')";
