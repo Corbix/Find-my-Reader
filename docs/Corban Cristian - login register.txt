@@ -1,0 +1,42 @@
+                          Dezvoltarea modulelor de logare si inregistrare
+
+
+In dezvoltarea modulelor, fiind primele etape din use-case, m-am axat in rand pe partea de html si php pentru a asigura functionalitatea modulelor si comunicarea cu celelalte module.
+Ca baza de date, avand experienta in oracle, initial am decis ca ne-ar fi mai usor si mai rapid sa ne folosim de cunostintele dobandite si am inceput proiectarea bazei de date.
+
+Asadar am construit tabela utilizator cu campurile:
+  - id,
+  - e-mail,
+  - parola,
+  - nume,
+  - prenume,
+
+La care mai urma sa mai adaugam campurile:
+  - avatar, (calea catre fisier)
+  - data nasterii,
+  - descrierea,
+  - ultima latitudine,
+  - ultima longitudine.
+
+Am creat proceduri pe care urma sa le apelez din php pentru inregistrare si confirmarea logarii.
+
+In php, am creat paginile de login, register si logout in felul urmator:
+  in login si register am creat formulare continand campurile cerute si butoane de navicare catre celelalte pagini.
+  Din motive de securitate, am asigurat criptarea parolei cu metoda md5.
+  In pagina de login in plus am creat o sesiune unica fiecarui utilizator atanci cand logarea s-a efectuat cu succes, purtand cu ea e-mailul sau (ar fi trebuit ca sesiunea sa fie dupa id, nu dupa e-mail, dar ca sa obtinem e-mailul avand id-ul era necesar sa interogam baza de date, asa ca pentru a prioritiza eficienta in detrimentul securitatii, am decis sa folosim e-mailul din simplul motiv ca era mai des cerut).
+  In pagina logout se realizeaza inchiderea sesiunii pe motivul securitatii, unde accesul site-ului este asigurat de o conectare.
+
+Redirectionari:
+  - Daca sesiunea a fost stabilita si utilizatorul viziteaza login.php, acesta este redirectionat imediat catre pagina de home.
+  - Daca sesiunea nu a fost stabilita si utilizatorul viziteaza home.php, acesta este redirectionat imediat catre pagina de login.
+
+Probleme intampinate:
+  O baza de date Oracle locala este mai greu de conectat, parametrul pentru conexiune depinzand de versiunea softului, editie si tipul conexiunii.
+  Parametrul necesitat de fiecare membru al echipei varia si am luat decizia schimbarii solutiei pentru baza de date.
+
+O posibila solutie pe care am luat-o in considerare a fost sa folosim NodeJS cu mongoDB si mongoose (care lucreaza cu obiecte), dar era mult prea diferit fata de ce facusem noi pana acum si ne-ar fi costat prea mult timp sa invatam si sa rescriem de la 0.
+
+Insa am laut decizia sa folosim MySQL, deoarece este inclus in xampp (de care ne foloseam pentru a rula si testa codul) este foarte simplu de lucrat cu el si este destul de asemanatoare cu versiunea Oracle, adica ne-am putut folosi de codul scris deja fara foarte multe modificari modificari.
+Un dezavantaj al acestei solutii a fost ca nu ne mai puteam folosi de proceduri, care ne-ar fi usurat lucrul cu baza de date.
+
+Pentru modulele de login si register a trebuit sa asigur inregistrarea si confirmarea logarii direct din php, o solutie nu la fel de eleganta, dar singura posibila.
