@@ -1,16 +1,16 @@
 <?php
 include("session.php");
 
-$c_email = $_GET['email'];			
+$c_email = $_GET['email'];
 include('Includere/connection.php');
 $sql = "SELECT * FROM `users` WHERE `email`='$c_email'";
 $datas = $dbh->query($sql);
 $count = $datas->rowCount();
 if ($count == 1)
 {
-	if($datas !== false) 
+	if($datas !== false)
 	{
-		foreach($datas as $row) 
+		foreach($datas as $row)
 		{
 			$c_idutilizator = $row['id'];
 			$c_firstname = $row['firstname'];
@@ -29,7 +29,6 @@ $dbh = null;
     <head>
     <title>My reader</title>
 	<link rel="stylesheet" href="stylesheets/style.css">
-	<link rel="stylesheet" href="stylesheets/notifications.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&amp;display=swap">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&amp;display=swap&quot; rel=&quot;stylesheet">
@@ -38,23 +37,24 @@ $dbh = null;
 </head>
 	<body>
 		<?php include('menu.php'); ?>
-		<div class="right-side">
-		<center>
+		<div class="right-side"style="padding-left: 150px;padding-top: 25px">
+
 			<div class="avatarprofile">
 				<!-- <a href="<?php echo "images/avatars/".$c_avatar; ?>"><img src="<?php echo "images/avatars/".$c_avatar; ?>" alt=""></a> -->
 				<img src="<?php echo "images/avatars/".$c_avatar; ?>" alt="">
 			</div>
+			<br>
 			<h3>Detalii cont</h3>
 			<p>
-				Firstname: <?php echo $c_firstname;?><br><br>
-				
-				Lastname: <?php echo $c_lastname;?><br><br>
-			
+				Prenume: <?php echo $c_firstname;?><br><br>
+
+				Nume: <?php echo $c_lastname;?><br><br>
+
 				Email: <?php echo $c_email;?><br><br>
-				
+
 				<?php if ($c_birthday){ ?>
-				Varsta: <?php 
-				$dob = strtotime(str_replace("/","-",$c_birthday));       
+				Varsta: <?php
+				$dob = strtotime(str_replace("/","-",$c_birthday));
 				$tdate = time();
 
 				$c_age = 0;
@@ -65,11 +65,11 @@ $dbh = null;
 				echo "$c_age";
 				?><br><br>
 				<?php } ?>
-				
+
 				<?php if ($c_description){ ?>
 				Descriere: <?php echo $c_description; ?><br><br>
 				<?php } ?>
-				
+
 				<?php
 				include('Includere/connection.php');
 				$sql = "SELECT * FROM `genres_users` WHERE `email` = '$c_email'";
@@ -77,22 +77,24 @@ $dbh = null;
 				$count = $datas->rowCount();
 				if ($count >= 1)
 				{
-					echo "Genuri preferate:";
-					if($datas !== false) 
+					echo "Genuri preferate: ";
+					if($datas !== false)
 					{
-						foreach($datas as $row) 
+						$den="";
+						foreach($datas as $row)
 						{
+							if($den)
+							echo ", ";
 							$den = $row['denumire'];
 							echo $den;
-							echo ", ";
 						}
 					}
 					echo "<br><br>";
 				}
 				$dbh = null;
 				?>
-				
-				
+
+
 				<?php
 				include('Includere/connection.php');
 				$sql = "SELECT * FROM `books_users` WHERE `email` = '$c_email'";
@@ -100,22 +102,23 @@ $dbh = null;
 				$count = $datas->rowCount();
 				if ($count >= 1)
 				{
-					echo "Carti citite:";
-					if($datas !== false) 
+					echo "Carti citite (ISBN): ";
+					if($datas !== false)
 					{
-						foreach($datas as $row) 
+						$isbn="";
+						foreach($datas as $row)
 						{
+							if($isbn)
+							echo ", ";
 							$isbn = $row['ISBN'];
 							echo $isbn;
-							echo ", ";
 						}
 					}
 				}
 				$dbh = null;
 				?>
 			</p>
-			<button class="send_request">Send request</button>
-		</center>
+
 		</div>
 	</body>
 </html>
