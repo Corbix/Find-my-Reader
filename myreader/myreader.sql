@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Gazdă: 127.0.0.1
--- Timp de generare: mai 07, 2020 la 12:04 PM
--- Versiune server: 10.1.38-MariaDB
--- Versiune PHP: 7.3.3
+-- Host: 127.0.0.1
+-- Generation Time: May 07, 2020 at 09:22 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Bază de date: `myreader`
+-- Database: `myreader`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structură tabel pentru tabel `apreciate_books`
+-- Table structure for table `apreciate_books`
 --
 
 CREATE TABLE `apreciate_books` (
@@ -37,7 +36,7 @@ CREATE TABLE `apreciate_books` (
 -- --------------------------------------------------------
 
 --
--- Structură tabel pentru tabel `books`
+-- Table structure for table `books`
 --
 
 CREATE TABLE `books` (
@@ -52,7 +51,7 @@ CREATE TABLE `books` (
 -- --------------------------------------------------------
 
 --
--- Structură tabel pentru tabel `books_users`
+-- Table structure for table `books_users`
 --
 
 CREATE TABLE `books_users` (
@@ -63,7 +62,7 @@ CREATE TABLE `books_users` (
 -- --------------------------------------------------------
 
 --
--- Structură tabel pentru tabel `genres`
+-- Table structure for table `genres`
 --
 
 CREATE TABLE `genres` (
@@ -72,7 +71,7 @@ CREATE TABLE `genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Eliminarea datelor din tabel `genres`
+-- Dumping data for table `genres`
 --
 
 INSERT INTO `genres` (`id`, `denumire`) VALUES
@@ -128,7 +127,7 @@ INSERT INTO `genres` (`id`, `denumire`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structură tabel pentru tabel `genres_users`
+-- Table structure for table `genres_users`
 --
 
 CREATE TABLE `genres_users` (
@@ -137,7 +136,7 @@ CREATE TABLE `genres_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Eliminarea datelor din tabel `genres_users`
+-- Dumping data for table `genres_users`
 --
 
 INSERT INTO `genres_users` (`email`, `denumire`) VALUES
@@ -148,20 +147,28 @@ INSERT INTO `genres_users` (`email`, `denumire`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structură tabel pentru tabel `notifications`
+-- Table structure for table `notifications`
 --
 
 CREATE TABLE `notifications` (
   `to_user` varchar(100) NOT NULL,
   `from_user` varchar(100) NOT NULL,
   `state` varchar(20) NOT NULL,
-  `time_sent` date NOT NULL
+  `time_sent` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`to_user`, `from_user`, `state`, `time_sent`) VALUES
+('seby_cotoc98@yahoo.com', 'galanandy400@yahoo.ro', 'confirmed', '2020-05-07 22:13:20'),
+('galanandy400@yahoo.ro', 'seby_cotoc98@yahoo.com', 'pending', '2020-05-07 22:13:38');
 
 -- --------------------------------------------------------
 
 --
--- Structură tabel pentru tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -179,59 +186,60 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Eliminarea datelor din tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `firstname`, `lastname`, `avatar`, `data_nasterii`, `description`, `google_account`, `last_latitude`, `last_longitude`) VALUES
-(1, 'seby_cotoc98@yahoo.com', '6845104EB4AFC0532BA0BF5F0A665154F1BF742FA01D209FBE215AA8321910141785BFA2D562F2D423601F068536AED82D33B75B718207313D48CA20C4BC43E3', 'Sebastian', 'Cotoc', '1_test.jpg', '1998-04-21', '12321312saasdasdasfsdgsga', NULL, NULL, NULL),
-(3, 'seby_bike@yahoo.com', '312B6DB61A37A2F1B126FA2C7976B613765EC577AE68577FE43771C12E1CA4549E376E04C91735AC446D664636AE5EE3150E9E076E649FAD18D0302BFBCF5669', 'Alin', 'Joshu', 'basic.jpg', NULL, NULL, NULL, NULL, NULL);
+(3, 'seby_bike@yahoo.com', '312B6DB61A37A2F1B126FA2C7976B613765EC577AE68577FE43771C12E1CA4549E376E04C91735AC446D664636AE5EE3150E9E076E649FAD18D0302BFBCF5669', 'Alin', 'Joshu', 'basic.jpg', NULL, NULL, NULL, NULL, NULL),
+(4, 'galanandy400@yahoo.ro', '92FC29510DFACE38FB0963D1CE2C6187C4B3B945E1CC9897CCD87697B19742D21582912581318B58B3DFBC44694FC8166C5FC79D85D85F72AFB4E7ED81218C21', 'Georgescu', 'Andrew', 'basic.jpg', NULL, NULL, NULL, NULL, NULL),
+(5, 'seby_cotoc98@yahoo.com', '92FC29510DFACE38FB0963D1CE2C6187C4B3B945E1CC9897CCD87697B19742D21582912581318B58B3DFBC44694FC8166C5FC79D85D85F72AFB4E7ED81218C21', 'Sebastian', 'Cotoc', 'basic.jpg', NULL, NULL, NULL, NULL, NULL);
 
 --
--- Indexuri pentru tabele eliminate
+-- Indexes for dumped tables
 --
 
 --
--- Indexuri pentru tabele `books`
+-- Indexes for table `books`
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `ISBN` (`ISBN`);
 
 --
--- Indexuri pentru tabele `genres`
+-- Indexes for table `genres`
 --
 ALTER TABLE `genres`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `denumire` (`denumire`);
 
 --
--- Indexuri pentru tabele `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT pentru tabele eliminate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pentru tabele `books`
+-- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pentru tabele `genres`
+-- AUTO_INCREMENT for table `genres`
 --
 ALTER TABLE `genres`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT pentru tabele `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
