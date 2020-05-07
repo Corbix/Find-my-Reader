@@ -12,6 +12,7 @@
 	<a href="home.php">Home</a>
 	<hr><a href="map.php">Map</a>
 	<hr><a href="settings.php">Settings</a>
+	<hr><a href="notifications.php">Notifications</a>
 	<hr id="logouthr"><a href="logout.php" id="logout">Logout</a>
 
 </div>
