@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2020 at 09:22 PM
+-- Generation Time: May 07, 2020 at 09:28 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -48,6 +48,13 @@ CREATE TABLE `books` (
   `an` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`id`, `ISBN`, `title`, `author`, `id_genre`, `an`) VALUES
+(1, '9739223621', 'Baltagul', 'Mihail Sadoveanu', 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -56,8 +63,16 @@ CREATE TABLE `books` (
 
 CREATE TABLE `books_users` (
   `email` varchar(100) NOT NULL,
-  `ISBN` varchar(50) NOT NULL
+  `ISBN` varchar(50) NOT NULL,
+  `time_add` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `books_users`
+--
+
+INSERT INTO `books_users` (`email`, `ISBN`, `time_add`) VALUES
+('seby_cotoc98@yahoo.com', '9739223621', '2020-05-07 22:27:17');
 
 -- --------------------------------------------------------
 
@@ -227,7 +242,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `genres`

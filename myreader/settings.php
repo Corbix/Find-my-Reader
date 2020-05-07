@@ -441,7 +441,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			include('Includere/connection.php');
 			$sql = "INSERT IGNORE INTO `books`(`ISBN`, `title`, `author`) VALUES ('$isbn','$title','$author')";
 			$datas = $dbh->query($sql);
-			$sql1 = "INSERT INTO `books_users`(`email`, `ISBN`) VALUES ('$email','$isbn')";
+			$sql1 = "INSERT INTO `books_users`(`email`, `ISBN`, `time_add`) VALUES ('$email','$isbn',now())";
 			$datas = $dbh->query($sql1);
 			$dbh = null;
 			echo '<script type="text/javascript">alert("Ai adaugat cartea cu succes")</script>';
