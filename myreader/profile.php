@@ -117,8 +117,9 @@ $dbh = null;
 				$dbh = null;
 				?>
 			</p>
-			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-			<input class="btn btn-primary" type="submit" name="send_request" value="Send request">
+			<!--<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">-->
+			<form method="post">
+			<input class="btn btn-primary" type="submit" name="send_request" value="Send Invite">
 			</form>
 		</div>
 	</body>
@@ -126,7 +127,8 @@ $dbh = null;
 <?php
 	if ($_SERVER["REQUEST_METHOD"] == "POST")
 	{
-		$sql = "INSERT INTO `notifications`(`to_user`, `from_user`, `state`, `time_sent `) VALUES ('$c_email','$email','pending','SYSDATE')";
+		include('Includere/connection.php');
+		$sql = "INSERT INTO notifications(to_user, from_user, received, time_sent) VALUES ('$c_email','$email','pending',now())";
 		$datas = $dbh->query($sql);
 	}
 ?>
