@@ -1,0 +1,41 @@
+.notification{
+    padding: 5%;
+    border-radius: 10px;
+    background: #A7CCA7;
+}
+
+.item1{
+    grid-area: message;
+}
+.item2{
+    font-size: 80%;
+    grid-area:accept;
+    padding: 3%;
+    border-radius: 10px;
+    background: green;
+}
+.item3{
+    font-size: 80%;
+    grid-area:refuse;
+    padding: 3%;
+    border-radius: 10px;
+    background: red;
+}
+
+.received{
+    padding: 5%;
+    border-radius: 10px;
+    background: #A7CCA7;
+    display: grid;
+    grid-template-areas:
+        'message message'
+        'accept refuse';
+    grid-row-gap: 10%;
+    grid-column-gap: 10%;
+}
+
+.send_request{
+    padding: 5%;
+    border-radius: 10px;
+    background: #A7CCA7;
+}
