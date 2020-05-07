@@ -128,7 +128,7 @@ $dbh = null;
 	if ($_SERVER["REQUEST_METHOD"] == "POST")
 	{
 		include('Includere/connection.php');
-		$sql = "INSERT INTO notifications(to_user, from_user, received, time_sent) VALUES ('$c_email','$email','pending',now())";
+		$sql = "INSERT INTO `notifications`(`to_user`, `from_user`, `state`, `time_sent`) VALUES ('$c_email','$email','pending',now())";
 		$datas = $dbh->query($sql);
 	}
 ?>
