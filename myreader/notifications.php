@@ -19,8 +19,65 @@ include("session.php");
         <div class="right-side">
         <center>
         <?php
+			include('Includere/connection.php');
+            $sql = "SELECT * FROM `notifications` WHERE `to_user` = '$email' ORDER BY `time_sent` DESC";
+            $datas = $dbh->query($sql);
+            $count = $datas->rowCount();
+			if ($count > 0)
+				echo "PRIMITE";
+            if($datas !== false) 
+            {
+                foreach($datas as $row) 
+                {
+                    $c_from_user = $row['from_user'];
+					$c_to_user = $row['to_user'];
+                    $c_state = $row['state'];
+                    $c_time_sent = $row['time_sent'];
+            
+					if ($c_state == "pending"){
+					?>
+                        <div class="received">
+                            <div class="item1">
+                                <?php echo "User $c_from_user would like to meet you!"; ?>
+                            </div>
+							<?php
+							if(isset($_POST['accept'])) { 
+								$sql = "UPDATE `notifications` SET `state`='confirmed' WHERE `to_user` = '$c_to_user' and `from_user` = '$c_from_user'";
+								$datas = $dbh->query($sql);
+								echo "<script>location.href = 'notifications.php'</script>";
+							} 
+							if(isset($_POST['refuse'])) { 
+								$sql = "UPDATE `notifications` SET `state`='refused' WHERE `to_user` = '$c_to_user' and `from_user` = '$c_from_user'";
+								$datas = $dbh->query($sql);
+								echo "<script>location.href = 'notifications.php'</script>";
+							} 
+							?>
+							
+                            <form method="post"> 
+								<input type="submit" name="accept" value="accept"/> 
+								<input type="submit" name="refuse" value="refuse"/> 
+							</form> 
+                        </div>
+                    <?php
+					}
+					elseif ($c_state == "confirmed"){
+                        echo "<div class=notification>
+                        Ai acceptat invitatia utilizatorului $c_from_user!
+                        </div>";
+                    }
+                    elseif ($c_state == "refused") {
+                        echo "<div class=notification>
+                        Ai refuzat invitatia utilizatorului $c_from_user!
+                        </div>";
+                    }
+				}
+			}
+			$dbh = null;
+		
+			if ($count > 0)
+				echo "TRIMISE";
             include('Includere/connection.php');
-            $sql = "SELECT * FROM `notifications` WHERE `to_user` = '$email'";
+            $sql = "SELECT * FROM `notifications` WHERE `from_user` = '$email' ORDER BY `time_sent` DESC";
             $datas = $dbh->query($sql);
             $count = $datas->rowCount();
             if($datas !== false) 
@@ -46,37 +103,9 @@ include("session.php");
                         User $c_from_user refused your request.
                         </div>";
                     }
-                    elseif ($c_state == "received"){
-                        echo "<div class=received>
-                                <div class=item1>
-                                    User $c_from_user would like to meet you!
-                                </div>
-                                <button class=item2 onclick=accept($c_from_user)>accept</button>
-                                <button class=item3 onclick=refuse($c_from_user)>refuse</button>
-                        </div>";
-                    }
-                    echo "<br>";
                 }
             }
             $dbh = null;
-
-            function accept($from_user){
-                $sql = "DELETE FROM `notifications`
-                    WHERE `to_user` = '$email' AND `from_user` = '$from_user'";
-                $sql = "DELETE FROM `notifications`
-                    WHERE `to_user` = '$from_user' AND `to_user` = '$email'";
-                $sql = "INSERT INTO `notifications` 
-                    VALUES('$from_user', '$email', 'confirmed', sysdate)";
-            }
-
-            function refuse($from_user){
-                $sql = "DELETE FROM `notifications`
-                    WHERE `to_user` = '$email' AND `from_user` = '$from_user'";
-                $sql = "DELETE FROM `notifications`
-                    WHERE `to_user` = '$from_user' AND `to_user` = '$email'";
-                $sql = "INSERT INTO `notifications` 
-                    VALUES('$from_user', '$email', 'refused', sysdate)";
-            }
         ?>
         </center>
         </div>

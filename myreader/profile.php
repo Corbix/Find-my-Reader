@@ -117,9 +117,8 @@ $dbh = null;
 				$dbh = null;
 				?>
 			</p>
-			<!--<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">-->
 			<form method="post">
-			<input class="btn btn-primary" type="submit" name="send_request" value="Send Invite">
+			<input class="btn btn-primary" type="submit" name="send_request" value="Send request">
 			</form>
 		</div>
 	</body>
@@ -130,5 +129,6 @@ $dbh = null;
 		include('Includere/connection.php');
 		$sql = "INSERT INTO `notifications`(`to_user`, `from_user`, `state`, `time_sent`) VALUES ('$c_email','$email','pending',now())";
 		$datas = $dbh->query($sql);
+		$dbh = null;
 	}
 ?>
