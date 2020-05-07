@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 24, 2020 at 07:39 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.4
+-- Gazdă: 127.0.0.1
+-- Timp de generare: mai 07, 2020 la 12:04 PM
+-- Versiune server: 10.1.38-MariaDB
+-- Versiune PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `myreader`
+-- Bază de date: `myreader`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `apreciate_books`
+-- Structură tabel pentru tabel `apreciate_books`
 --
 
 CREATE TABLE `apreciate_books` (
@@ -36,7 +37,7 @@ CREATE TABLE `apreciate_books` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books`
+-- Structură tabel pentru tabel `books`
 --
 
 CREATE TABLE `books` (
@@ -51,7 +52,7 @@ CREATE TABLE `books` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books_users`
+-- Structură tabel pentru tabel `books_users`
 --
 
 CREATE TABLE `books_users` (
@@ -62,7 +63,7 @@ CREATE TABLE `books_users` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genres`
+-- Structură tabel pentru tabel `genres`
 --
 
 CREATE TABLE `genres` (
@@ -71,7 +72,7 @@ CREATE TABLE `genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `genres`
+-- Eliminarea datelor din tabel `genres`
 --
 
 INSERT INTO `genres` (`id`, `denumire`) VALUES
@@ -127,7 +128,7 @@ INSERT INTO `genres` (`id`, `denumire`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genres_users`
+-- Structură tabel pentru tabel `genres_users`
 --
 
 CREATE TABLE `genres_users` (
@@ -136,7 +137,7 @@ CREATE TABLE `genres_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `genres_users`
+-- Eliminarea datelor din tabel `genres_users`
 --
 
 INSERT INTO `genres_users` (`email`, `denumire`) VALUES
@@ -147,7 +148,20 @@ INSERT INTO `genres_users` (`email`, `denumire`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structură tabel pentru tabel `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `to_user` varchar(100) NOT NULL,
+  `from_user` varchar(100) NOT NULL,
+  `state` varchar(20) NOT NULL,
+  `time_sent` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -165,7 +179,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Eliminarea datelor din tabel `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `firstname`, `lastname`, `avatar`, `data_nasterii`, `description`, `google_account`, `last_latitude`, `last_longitude`) VALUES
@@ -173,48 +187,48 @@ INSERT INTO `users` (`id`, `email`, `password`, `firstname`, `lastname`, `avatar
 (3, 'seby_bike@yahoo.com', '312B6DB61A37A2F1B126FA2C7976B613765EC577AE68577FE43771C12E1CA4549E376E04C91735AC446D664636AE5EE3150E9E076E649FAD18D0302BFBCF5669', 'Alin', 'Joshu', 'basic.jpg', NULL, NULL, NULL, NULL, NULL);
 
 --
--- Indexes for dumped tables
+-- Indexuri pentru tabele eliminate
 --
 
 --
--- Indexes for table `books`
+-- Indexuri pentru tabele `books`
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `ISBN` (`ISBN`);
 
 --
--- Indexes for table `genres`
+-- Indexuri pentru tabele `genres`
 --
 ALTER TABLE `genres`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `denumire` (`denumire`);
 
 --
--- Indexes for table `users`
+-- Indexuri pentru tabele `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pentru tabele eliminate
 --
 
 --
--- AUTO_INCREMENT for table `books`
+-- AUTO_INCREMENT pentru tabele `books`
 --
 ALTER TABLE `books`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `genres`
+-- AUTO_INCREMENT pentru tabele `genres`
 --
 ALTER TABLE `genres`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pentru tabele `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
