@@ -39,3 +39,15 @@
     border-radius: 10px;
     background: #A7CCA7;
 }
+
+.btn{
+    background: #A7CCA7;
+    border: 2px solid #A7CCA7;
+    color: white;
+    padding: 12px 40px;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 16px 16px 16px 16px;
+    border-radius:50px;
+}

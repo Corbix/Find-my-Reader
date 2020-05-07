@@ -29,6 +29,7 @@ $dbh = null;
     <head>
     <title>My reader</title>
 	<link rel="stylesheet" href="stylesheets/style.css">
+	<link rel="stylesheet" href="stylesheets/notifications.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&amp;display=swap">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&amp;display=swap&quot; rel=&quot;stylesheet">
@@ -37,13 +38,11 @@ $dbh = null;
 </head>
 	<body>
 		<?php include('menu.php'); ?>
-		<div class="right-side"style="padding-left: 150px;padding-top: 25px">
-
+		<div class="right-side" style="padding-left: 150px; padding-top: 25px">
 			<div class="avatarprofile">
 				<!-- <a href="<?php echo "images/avatars/".$c_avatar; ?>"><img src="<?php echo "images/avatars/".$c_avatar; ?>" alt=""></a> -->
 				<img src="<?php echo "images/avatars/".$c_avatar; ?>" alt="">
 			</div>
-			<br>
 			<h3>Detalii cont</h3>
 			<p>
 				Prenume: <?php echo $c_firstname;?><br><br>
@@ -118,7 +117,16 @@ $dbh = null;
 				$dbh = null;
 				?>
 			</p>
-
+			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+			<input class="btn btn-primary" type="submit" name="send_request" value="Send request">
+			</form>
 		</div>
 	</body>
 </html>
+<?php
+	if ($_SERVER["REQUEST_METHOD"] == "POST")
+	{
+		$sql = "INSERT INTO `notifications`(`to_user`, `from_user`, `state`, `time_sent `) VALUES ('$c_email','$email','pending','SYSDATE')";
+		$datas = $dbh->query($sql);
+	}
+?>
