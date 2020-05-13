@@ -183,7 +183,7 @@
   background: rgba(226, 226, 226, 0.459);
 }
 
-#changeAvatar {
+#changeAvatar, #deleteBooks {
   display: none;
   height: auto;
   padding: 15px;
@@ -345,31 +345,6 @@ label {
       justify-content: center;
   }
 
-  .menu {
-      order: 2;
-      width: 100%;
-      height: 7%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-  }
-  
-  .menu hr {
-      display: none;
-  }
-  .avatarprofile {
-      display: none;
-  }
-
-  .menu p, h3 {
-      display: none;
-  }
-
-  .menu a {
-      padding: 15px;
-      font-size: 15px;
-  }
-
   .right-side {
       display: block;
       order: 1;
@@ -389,7 +364,7 @@ label {
     font-size: 15px;
   }
 
-  #changePassword, #changeBirth, #changeDescription, #addGenres, #modifyBooks, #changeAvatar  {
+  #changePassword, #changeBirth, #changeDescription, #addGenres, #modifyBooks, #changeAvatar, #deleteBooks  {
     display: none;
     height: auto;
     width: 80vw;
@@ -418,6 +393,10 @@ label {
   }
 
   #modifyBooks .form-control {
+    width: 65vw;
+  }
+
+  #deleteBooks .form-control {
     width: 65vw;
   }
 

@@ -1,7 +1,57 @@
-.notification{
+.right-side {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 90%;
+
+    color: #707070;
+    overflow: hidden;
+}
+
+.trimise {
+    padding: 50px;
+    width: 50%;
+    overflow-y: scroll;
+}
+
+.primite {
+    padding: 50px;
+    width: 50%;
+    overflow-y: scroll;
+}
+
+.trimise::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.trimise {
+    -ms-overflow-style: none;
+}
+
+.primite::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.primite {
+    -ms-overflow-style: none;
+}
+
+.primite .notification {
     padding: 5%;
-    border-radius: 10px;
-    background: #A7CCA7;
+    border-radius: 20px;
+    background: rgb(235, 229, 229);
+    margin: 10px;
+
+}
+
+.trimise .notification {
+    padding: 5%;
+    border-radius: 20px;
+    background: rgb(228, 227, 227);
+    margin: 10px;
+
 }
 
 .item1{
@@ -24,8 +74,9 @@
 
 .received{
     padding: 5%;
-    border-radius: 10px;
-    background: #A7CCA7;
+    border-radius: 20px;
+    background: rgb(235, 229, 229);
+    margin: 10px;
     display: grid;
     grid-template-areas:
         'message message'
@@ -44,10 +95,42 @@
     background: #A7CCA7;
     border: 2px solid #A7CCA7;
     color: white;
-    padding: 12px 40px;
-    font-size: 24px;
-    font-weight: 600;
+    padding: 5px 15px;
+    font-size: 12px;
+    font-weight: 40;
     cursor: pointer;
-    margin: 16px 16px 16px 16px;
-    border-radius:50px;
+    border-radius: 10px;
+    margin-top: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+
+    body {
+        display: flex;
+        flex-direction: column;    
+        justify-content: center;
+    }
+
+    .right-side {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        overflow-x: scroll;
+        width: 100%;
+        height: 97%;
+    }
+
+    .primite, .trimise{
+        width: 80%;
+    }
+
+    .primite {
+        order: 1;
+    }   
+
+    .trimise {
+        order: 2;
+    }
+
+
+}  

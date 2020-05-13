@@ -1,0 +1,265 @@
+.right-side {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    height: 100vh;
+
+    color: #707070;
+  }
+
+.bottom-side::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.bottom-side {
+    -ms-overflow-style: none;
+}
+
+.background {
+    width: 80%;
+    height: 10vh;
+    background-image: url('../images/home.jpg');
+    background-position: center;
+    background-size: cover;
+    /* opacity: 0.5; */
+    margin-top: 5vh;
+    border-radius: 20px;
+    position: absolute;
+}
+
+.right-side .avatarprofile {
+    position: relative;
+    margin-left: 3vw;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #F3F3F3;
+
+}
+
+.name h3{
+    color: #707070;
+
+}
+
+.right-side .name {
+    float: right;
+    position: fixed;
+    margin-left: 30vh;
+    margin-top: 8vh;
+}
+
+.btn {
+
+    background: #A7CCA7;
+    border: 2px solid #A7CCA7;
+    color: white;
+    padding: 5px 15px;
+    font-size: 16px;
+    font-weight: 40;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 2vh;
+}
+
+.da {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+}
+
+.bottom-side {
+    padding: 30px;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    height: 70vh;
+    overflow: scroll;
+}
+
+.desc {
+    height: auto;
+    padding: 10px;
+    width: 50%;
+
+}
+
+.desc p {
+    font-family: 'Roboto Slab', serif;
+    background: rgba(255, 255, 255, 0.514);
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.favorite-genre {
+    flex: 1;
+    width: 50%;
+    padding: 10px;
+    height: auto;
+    
+}
+
+.favorite-genre p {
+    padding: 10px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.books {
+    flex: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+
+.book-cover {
+    width: 150px;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-bottom: 10px;
+
+}
+
+.book-cover img {
+    width: 150px;
+    height: 23vh;
+    border-radius: 15px;
+}
+
+.book-cover h2 {
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.book-cover h4 {
+    margin-top: 2px;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.mobile-name {
+    display: none;
+}
+
+.mobile-send-request{
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+
+
+    body{
+        justify-content: center;
+    }
+
+    .right-side {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0;
+        width: 90%;
+        overflow: hidden;
+        
+    }
+    .da {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .desc, .favorite-genre {
+        width: auto;
+        height: auto;
+    }
+
+    .da br {
+        display: none;
+    }
+
+    .background{
+        width: 90%;
+    }
+
+    .desktop-request, .name{
+        display: none;
+    }
+
+    .avatarprofile {
+        height: 100px;
+        width: 100px;
+        margin-top: 20px;
+    }
+
+    .favorite-genre h4 {
+        margin: 5px;
+    }
+
+    .books {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px;
+        height: 100%;
+        padding-right: 20px;
+    }
+
+    .books::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Hide scrollbar for IE and Edge */
+    .books {
+        -ms-overflow-style: none;
+    }
+
+    .book-cover {
+        padding: 10px;
+        width: auto;
+        display: inline-block;
+        flex-grow: 1;
+    }
+
+    .book-cover h2{
+        font-size: 14px;
+    }
+
+    .book-cover h4{
+        font-size: 10px;
+    }
+
+    .book-cover img {
+        width: 120px;
+        height: 23vh;
+        border-radius: 15px;
+    }
+
+    .bottom-side{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .mobile-name, .mobile-send-request {
+        margin-top: 0px;
+        display: block;
+        padding-left: 10px;
+    }
+
+    .mobile-send-request .btn{
+        margin-top: 0px;
+    }
+
+
+}

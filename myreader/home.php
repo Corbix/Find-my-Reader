@@ -63,6 +63,10 @@ $url_genre2 = "https://www.googleapis.com/books/v1/volumes?q= +subject:{$genre2_
 
 <body>
     <?php include('menu.php'); ?>
+    <script>
+    const menu = document.getElementById('menu-home');
+    menu.setAttribute('class', 'active');
+    </script>
     <div class='right-side'>
         <div class="home-header">
             <h2> Your favorite genre recommendations

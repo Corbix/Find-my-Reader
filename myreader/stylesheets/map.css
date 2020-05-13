@@ -30,37 +30,6 @@
 
 @media only screen and (max-width: 600px) {
 
-    body {
-        display: flex;
-        flex-direction: column;
-
-    }
-
-    .menu {
-        order: 2;
-        width: 100%;
-        height: 7%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-    
-    .menu hr {
-        display: none;
-    }
-    .avatarprofile {
-        display: none;
-    }
-
-    .menu p, h3 {
-        display: none;
-    }
-
-    .menu a {
-        padding: 15px;
-        font-size: 15px;
-    }
-
     .map {
         display: block;
         order: 1;

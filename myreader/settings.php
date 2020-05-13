@@ -21,7 +21,10 @@ include("session.php");
 <body>
 
 	<?php include('menu.php'); ?>
-
+	<script>
+    const menu = document.getElementById('menu-settings');
+    menu.setAttribute('class', 'active');
+    </script>
 	<div class="right-side">
 		<h3>Account settings</h3><br>
 
@@ -255,6 +258,7 @@ include("session.php");
       function fillForm(isbn, title, author) {
 		
         var app = document.getElementById('formular');
+		app.innerHTML = '';
 
         const form = document.createElement('form');
         form.method = 'post';
@@ -294,6 +298,21 @@ include("session.php");
     
   </script>
 
+	<!-- DELETE BOOKS -->
+		<div class="settings-header" onclick="myFunction('deleteBooks')">
+			<h2 style="text-align:left;float:left;"> Delete books
+				<h2 style="text-align:right;float:right;"> &#709
+		</div>
+
+		<div id='deleteBooks'>
+			<label>Search for books: </label> <br>
+			<form method="post" enctype="multipart/form-data">
+				<input class="form-control" list="gens" name="dengens">
+				<datalist id="gens">
+			</form>
+		</div>
+
+	<!-- SHOW/HIDE HEADERS -->
 		<script>
 			function myFunction(id) {
 				var settings = document.getElementById(id);
@@ -441,7 +460,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			include('Includere/connection.php');
 			$sql = "INSERT IGNORE INTO `books`(`ISBN`, `title`, `author`) VALUES ('$isbn','$title','$author')";
 			$datas = $dbh->query($sql);
-			$sql1 = "INSERT INTO `books_users`(`email`, `ISBN`, `time_add`) VALUES ('$email','$isbn',now())";
+			$sql1 = "INSERT INTO `books_users`(`email`, `ISBN`, `time_add`) VALUES ('$email','$isbn', now())";
 			$datas = $dbh->query($sql1);
 			$dbh = null;
 			echo '<script type="text/javascript">alert("Ai adaugat cartea cu succes")</script>';

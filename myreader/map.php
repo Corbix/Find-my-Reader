@@ -19,6 +19,10 @@ include("session.php");
 
 <body>
     <?php include('menu.php'); ?>
+    <script>
+    const menu = document.getElementById('menu-map');
+    menu.setAttribute('class', 'active');
+    </script>
     <div class="map" id="map">
         <script>
             var map, infoWindow;

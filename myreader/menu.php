@@ -9,10 +9,10 @@
 	<p>Hello,
 		<?php echo $firstname;?>
 	</p>
-	<a href="home.php">Home</a>
-	<hr><a href="map.php">Map</a>
-	<hr><a href="settings.php">Settings</a>
-	<hr><a href="notifications.php">Notifications</a>
+	<a id='menu-home' href="home.php">Home</a>
+	<hr><a id='menu-map' href="map.php">Map</a>
+	<hr><a id='menu-notifications' href="notifications.php">Notifications</a>
+	<hr><a id='menu-settings' href="settings.php">Settings</a>
 	<hr id="logouthr"><a href="logout.php" id="logout">Logout</a>
 
 </div>
