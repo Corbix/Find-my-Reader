@@ -44,7 +44,7 @@ include("session.php");
                             lng: position.coords.longitude
                         };
                         let str = `You are here!`;
-                        var newurl = "/myreader/map.php?lat=" + pos.lat + "&long=" + pos.lng;
+                        var newurl = "/map.php?lat=" + pos.lat + "&long=" + pos.lng;
                         window.onload = window.history.pushState({
                             path: newurl
                         }, '', newurl);
@@ -60,7 +60,7 @@ include("session.php");
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
 
-                downloadUrl('/myreader/getMarkers.php', function (data) {
+                downloadUrl('/getMarkers.php', function (data) {
                     var xml = data.resnponseXML;
                     var xml = data.responseXML;
                     var markers = xml.documentElement.getElementsByTagName('marker');
@@ -105,7 +105,7 @@ include("session.php");
                         button.setAttribute('id', 'view-profile');
                         button.style.position = 'absolute';
                         button.style.bottom = '15px';
-                        button.setAttribute('onclick', `window.location.href='/myreader/profile.php?email=${email}'`)
+                        button.setAttribute('onclick', `window.location.href='/profile.php?email=${email}'`)
                         infoLeft.appendChild(button);
 
                         // var sendNotification = document.createElement('button')
