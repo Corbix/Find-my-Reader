@@ -145,8 +145,8 @@ include("session.php");
 
 				<label>Delete genres:</label><br>
 					<form method="post" enctype="multipart/form-data">
-						<input class="form-control" list="gens" name="dengens">
-						<datalist id="gens">
+						<input class="form-control" list="delgens" name="dengens">
+						<datalist id="delgens">
 							<?php
 					include('Includere/connection.php');
 					$sql = "SELECT * FROM `genres_users` WHERE `email` = '$email'";
