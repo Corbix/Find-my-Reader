@@ -127,7 +127,7 @@ include("session.php");
                         var app = document.getElementById('trimise');
                         var newDiv = document.createElement('div');
                         newDiv.setAttribute('class', 'notification');
-                        newDiv.textContent = `User $c_to_user accepted your request!`
+                        newDiv.textContent = `User $c_to_user refused your request!`
                         app.appendChild(newDiv);
                         </script>";
                     }
