@@ -307,8 +307,25 @@ include("session.php");
 		<div id='deleteBooks'>
 			<label>Search for books: </label> <br>
 			<form method="post" enctype="multipart/form-data">
-				<input class="form-control" list="gens" name="dengens">
-				<datalist id="gens">
+				<input class="form-control" list="delbooks" name="delbooks">
+				<datalist id="delbooks">
+				<?php
+					include('Includere/connection.php');
+					$sql = "SELECT * FROM `books_users` join `books` on books.ISBN = books_users.ISBN WHERE `email` = '$email'";
+					$datas = $dbh->query($sql);
+					$count = $datas->rowCount();
+					if($datas !== false) 
+					{
+						foreach($datas as $row) 
+						{
+							$den = $row['title'];
+							echo "<option value='$den'>";
+						}
+					}
+					$dbh = null;
+					?>
+				</datalist>
+				<input class="btn btn-primary" type="submit" value="Delete" name='delete-books-users-submit'>
 			</form>
 		</div>
 
@@ -465,6 +482,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$dbh = null;
 			echo '<script type="text/javascript">alert("Ai adaugat cartea cu succes")</script>';
 			echo "<script>location.href = 'settings.php'</script>";
+		}
+		if(!empty($_POST['delete-books-users-submit'])) {
+			$delbooks = $_POST["delbooks"];
+			include('Includere/connection.php');
+			$sql = "SELECT * FROM `books` WHERE `title` = '$delbooks'";
+			$datas = $dbh->query($sql);
+			$count = $datas->rowCount();
+			if($datas !== false) 
+			{
+				foreach($datas as $row) 
+				{
+					$ISBNdel = $row['ISBN'];
+					echo "<script>location.href = 'settings.php'</script>";	
+					echo "Genre deleted!";
+				}
+			}
+			
+			$sql = "DELETE FROM `books_users` WHERE `ISBN`='$ISBNdel' and `email`='$email'";
+			$datas = $dbh->query($sql);
+			$dbh = null;
 		}
 }
 ?>
