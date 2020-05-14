@@ -31,7 +31,7 @@ $sql = "SELECT *  FROM `users` AS u
         JOIN `books` AS b 
         JOIN `books_users` AS bu 
         ON bu.ISBN = b.ISBN AND bu.email = u.email 
-        WHERE bu.ISBN IN ('" . implode("','", $books_user) . "')  
+        WHERE EXTRACT(YEAR FROM now()) - EXTRACT(YEAR FROM `time_add`) <= 1 and bu.ISBN IN ('" . implode("','", $books_user) . "')  
         AND ((u.last_latitude <= '$lat' + 0.0015 AND u.last_longitude <= '$long' + 0.004) OR (u.last_latitude <= '$lat' - 0.0015 AND u.last_longitude <= '$long' - 0.004)
         OR (u.last_latitude <= '$lat' + 0.0015 AND u.last_longitude <= '$long' - 0.004) OR (u.last_latitude <= '$lat' - 0.0015 AND u.last_longitude <= '$long' + 0.004))";
 
