@@ -45,7 +45,7 @@ include("session.php");
                         };
                         let str = `You are here!`;
                         var newurl = "/map.php?lat=" + pos.lat + "&long=" + pos.lng;
-                        window.onload = window.history.pushState({
+                        window.onload = window.history.replaceState({
                             path: newurl
                         }, '', newurl);
                         infoWindow.setPosition(pos);
@@ -134,6 +134,8 @@ include("session.php");
                 });
             }
 
+
+
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                 infoWindow.setPosition(pos);
                 infoWindow.setContent(browserHasGeolocation ?
@@ -161,6 +163,8 @@ include("session.php");
             }
 
             function doNothing() {}
+
+            var myVar = setInterval(initMap, 600000);
 
 
         </script>
