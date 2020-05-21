@@ -481,7 +481,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$sql = "SELECT * FROM `books_users` WHERE `ISBN` = '$isbn'";
 			$datas = $dbh->query($sql);
 			$count = $datas->rowCount();
-			if ($count >= 1)
+			if ($count < 1)
 			{
 				$sql1 = "INSERT INTO `books_users`(`email`, `ISBN`, `time_add`) VALUES ('$email','$isbn', now())";
 				$datas = $dbh->query($sql1);
