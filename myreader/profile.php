@@ -26,7 +26,6 @@ $dbh = null;
 
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title>My reader</title>
 	<link rel="stylesheet" href="stylesheets/style.css">
@@ -44,12 +43,12 @@ $dbh = null;
 	<?php
 		if ($email != $c_email) {
 		include('Includere/connection.php');
-		$sql = "SELECT * FROM `notifications` WHERE `to_user` = '$c_email' and `from_user` = '$email' and `state` = 'pending'";
+		$sql = "SELECT * FROM `notifications` WHERE `state` = 'pending' and ((`to_user` = '$c_email' and `from_user` = '$email') or (`to_user` = '$email' and `from_user` = '$c_email'))";
 		$datas = $dbh->query($sql);
 		$count = $datas->rowCount();
 		if ($count > 0)
 		{
-			$msg = "Request already sent";
+			$msg = "Request pending";
 		}
 		else
 		{
@@ -93,8 +92,8 @@ $dbh = null;
 				$c_age = '';
 			}
 		?>
-			<form method="post" class='desktop-request'>
-			<input class="btn btn-primary" id='button' type="submit" name="send_request" value="<?php echo $msg;?>" >
+			<form method="post" class='desktop-request' action="<?php echo "profile.php?email=$c_email";?>">
+			<input class="btn btn-primary" id='button' type="submit" name="send_request" value="<?php echo $msg;?>">
 			</form>
 		</div>
 		<div class='bottom-side'>
@@ -107,7 +106,7 @@ $dbh = null;
 		</form>
 		<script>
 				const send = document.getElementById('button');
-				if (send.value == "You can't meet yourself!" || send.value == "Request already sent") {
+				if (send.value == "You can't meet yourself!" || send.value == "Request pending") {
 					send.disabled = true;
 					send.style.cursor = 'not-allowed';
 				}
