@@ -41,13 +41,28 @@ $dbh = null;
 
 <body>
 	<?php include('menu.php'); ?>
-	<?php 	if ($email != $c_email) {
+	<?php
+		if ($email != $c_email) {
+		include('Includere/connection.php');
+		$sql = "SELECT * FROM `notifications` WHERE `to_user` = '$c_email' and `from_user` = '$email' and `state` = 'pending'";
+		$datas = $dbh->query($sql);
+		$count = $datas->rowCount();
+		if ($count > 0)
+		{
+			$msg = "Request already sent";
+		}
+		else
+		{
+
 			$msg = 'Request meeting';
-			}
-			else {
-				$msg = "You can't meet yourself!";
-			}
+		}
+	}
+	else
+	{
+		$msg = "You can't meet yourself!";
+	}
 		?>
+
 	<div class="right-side">
 		<center>
 			<div class='background'>
@@ -92,7 +107,7 @@ $dbh = null;
 		</form>
 		<script>
 				const send = document.getElementById('button');
-				if (send.value == "You can't meet yourself!") {
+				if (send.value == "You can't meet yourself!" || send.value == "Request already sent") {
 					send.disabled = true;
 					send.style.cursor = 'not-allowed';
 				}
