@@ -11,7 +11,13 @@
 	</p>
 	<a id='menu-home' href="home.php">Home</a>
 	<hr><a id='menu-map' href="map.php">Map</a>
-	<hr><a id='menu-notifications' href="notifications.php">Notifications</a>
+	<hr><a id='menu-notifications' href="notifications.php">Notifications <?php
+	include('Includere/connection.php');
+	$sql = "SELECT * FROM `notifications` WHERE `to_user` = '$email' and `state` = 'pending'";
+	$datas = $dbh->query($sql);
+	$count = $datas->rowCount();
+	if ($count > 0)
+	echo "($count)"?></a>
 	<hr><a id='menu-settings' href="settings.php">Settings</a>
 	<hr id="logouthr"><a href="logout.php" id="logout">Logout</a>
 
