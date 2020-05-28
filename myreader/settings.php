@@ -478,7 +478,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$sql = "INSERT IGNORE INTO `books`(`ISBN`, `title`, `author`) VALUES ('$isbn','$title','$author')";
 			$datas = $dbh->query($sql);
 			
-			$sql = "SELECT * FROM `books_users` WHERE `ISBN` = '$isbn'";
+			$sql = "SELECT * FROM `books_users` WHERE `ISBN` = '$isbn' and `email` = '$email'";
 			$datas = $dbh->query($sql);
 			$count = $datas->rowCount();
 			if ($count < 1)
